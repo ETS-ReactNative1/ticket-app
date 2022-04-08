@@ -12,6 +12,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import { navigationRef } from "./RootNavigation";
 import NewsDetail from "./NewsDetail";
+import AboutGlobo from "./About";
 
 const Stack = createStackNavigator();
 
@@ -48,6 +49,13 @@ export default function App() {
             component={NewsDetail}
             options={{
               header: () => <Header headerDisplay="News" />,
+            }}
+          />
+          <Stack.Screen
+            name="About"
+            component={AboutGlobo}
+            options={{
+              header: () => <Header headerDisplay="About Globomantics" />,
             }}
           />
         </Stack.Navigator>
