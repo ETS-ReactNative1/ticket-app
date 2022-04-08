@@ -9,6 +9,9 @@ import { Platform } from "react-native";
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
 import Header from "./Header";
+import Footer from "./Footer";
+import { navigationRef } from "./RootNavigation";
+import NewsDetail from "./NewsDetail";
 
 const Stack = createStackNavigator();
 
@@ -25,6 +28,7 @@ export default function App() {
         style={{
           paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
         }}
+        ref={navigationRef}
       >
         <Stack.Navigator
           initialRouteName="Globomantics"
@@ -39,7 +43,15 @@ export default function App() {
               header: () => <Header headerDisplay="Globomantics" />,
             }}
           />
+          <Stack.Screen
+            name="NewsDetail"
+            component={NewsDetail}
+            options={{
+              header: () => <Header headerDisplay="News" />,
+            }}
+          />
         </Stack.Navigator>
+        <Footer />
       </NavigationContainer>
     );
   }
