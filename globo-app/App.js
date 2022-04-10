@@ -14,6 +14,8 @@ import { navigationRef } from "./RootNavigation";
 import NewsDetail from "./NewsDetail";
 import AboutGlobo from "./About";
 import Quotepage from "./Quote";
+import Catalogpage from "./Catalog";
+import CatalogDetail from "./CatalogDetail";
 
 const Stack = createStackNavigator();
 
@@ -64,6 +66,20 @@ export default function App() {
             component={Quotepage}
             options={{
               header: () => <Header headerDisplay="Get a quote" />,
+            }}
+          />
+          <Stack.Screen
+            name="Catalog"
+            component={Catalogpage}
+            options={{
+              header: () => <Header headerDisplay="Globomantics Robotics" />,
+            }}
+          />
+          <Stack.Screen
+            name="CatalogDetail"
+            component={CatalogDetail}
+            options={{
+              header: () => <Header headerDisplay="Product Information" />,
             }}
           />
         </Stack.Navigator>

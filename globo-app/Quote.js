@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   Text,
@@ -8,20 +8,43 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-export default function Quotepage() {
+export default function Quotepage(navroute) {
+  // console.log("Quotepage has nav route:");
+  // console.log(navroute);
+  // console.log("Quotepage has params: ");
+  // console.log(navroute.route.params);
+
   const [name, nameChange] = useState("");
   const [email, emailChange] = useState("");
   const [phone, phoneChange] = useState("");
   const [message, messageChange] = useState("");
   const [submitError, setError] = useState(false);
   const [submitted, trySubmit] = useState(false);
+  const { model } = navroute.route.params;
+  const { modelNumber } = navroute.route.params;
+
+  // console.log("Quotepage has model: " + model);
+  // console.log("Quotepage has modelNumber: " + modelNumber);
+
+  useEffect(() => {
+    if (model !== "Footer") {
+      const newQuote = `${model} model#: ${modelNumber}`;
+      messageChange(newQuote);
+    } else {
+      messageChange("");
+    }
+  }, [model]);
 
   const postMessage = () => {
-    //make sure inputs are not blank
     if (!name | !email | !message) {
       setError(true);
     } else {
       setError(false);
+
+      console.log(
+        "Received message from " + name + " at " + email + ": " + message
+      );
+
       trySubmit(true);
     }
   };
